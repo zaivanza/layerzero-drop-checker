@@ -21,9 +21,12 @@ def get_layerzero_wallets():
     with open("layerzero_wallets/wallets.csv", newline='') as csvfile:
         data = csv.DictReader(csvfile)
         for i, row in enumerate(data):
-            if "ADDRESS" in row:
-                address = row["ADDRESS"].lower()
-                wallets.append(address)
+            if "Address" in row:
+                try:
+                    address = row["Address"].lower()
+                    wallets.append(address)
+                except Exception as error:
+                    pass
     cprint(f"Found {len(wallets)} ineligible wallets", "white")
     return wallets
 
